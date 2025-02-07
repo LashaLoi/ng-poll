@@ -39,10 +39,10 @@ export default function Home() {
 
   return (
     <BackgroundBeamsWithCollision>
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center h-[200px]">
         <Image src="/logo.svg" height={200} width={200} alt="logo" />
       </div>
-      <div className="pt-[100px] flex flex-col justify-center items-center px-4">
+      <div className="pt-[50px] flex flex-col justify-center items-center px-4">
         <h2 className="mb-10 sm:mb-20 text-center sm:text-5xl text-3xl dark:text-white text-black">
           Задай свой <ColourfulText text="вопрос" />
         </h2>
