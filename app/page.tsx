@@ -1,34 +1,60 @@
 "use client";
 
-import { useActionState } from "react";
-import { Heading, Flex, TextArea } from "@radix-ui/themes";
+import Image from "next/image";
 
-import { askAction } from "./actions";
+import { useState } from "react";
 
-import { Submit } from "../components/Submit";
+import { askRequest } from "@/utils/supabase/api";
+
+import { Input } from "@/components/Input";
+import { ColourfulText } from "@/components/Text";
+import { BackgroundBeamsWithCollision } from "@/components/Background";
+
 import { Notification } from "./components/Notification";
 
+const placeholders = [
+  "Где вы черпаете вдохновение?",
+  "Какие у вас есть вопросы к Богу?",
+  "Любимое место писание?",
+  "Как вы пришли к Богу?",
+  "С какими сложностями вы сталкиваетесь??",
+];
+
 export default function Home() {
-  const [state, action] = useActionState(askAction, "initial");
+  const [input, setInput] = useState("");
+  const [status, setStatus] = useState<"ok" | "error" | "initial">("initial");
+
+  const handleChange = ({
+    target: { value },
+  }: React.ChangeEvent<HTMLInputElement>) => setInput(value);
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const resultStatus = await askRequest(input);
+    setStatus(resultStatus);
+
+    setTimeout(() => setStatus("initial"), 3000);
+  };
 
   return (
-    <div className="mx-auto w-full flex justify-center">
-      <form action={action} className="sm:w-[500px] w-full mt-[20%] m-4">
-        <Heading size="6" mb="5">
-          Задайте ваш вопрос
-        </Heading>
-        <Flex gap="3" direction="column">
-          <TextArea
-            className="w-full h-[150px]"
-            required
-            placeholder="Вопрос ..."
-            name="query"
-            color="cyan"
-          />
-          <Submit />
-          <Notification state={state} />
-        </Flex>
-      </form>
-    </div>
+    <BackgroundBeamsWithCollision>
+      <div className="flex justify-center items-center">
+        <Image src="/logo.svg" height={200} width={200} alt="logo" />
+      </div>
+      <div className="pt-[100px] flex flex-col justify-center items-center px-4">
+        <h2 className="mb-10 sm:mb-20 text-center sm:text-5xl text-3xl dark:text-white text-black">
+          Задай свой <ColourfulText text="вопрос" />
+        </h2>
+        <Input
+          placeholders={placeholders}
+          onChange={handleChange}
+          onSubmit={onSubmit}
+        />
+        <div className="mt-4">
+          <Notification state={status} />
+        </div>
+      </div>
+    </BackgroundBeamsWithCollision>
   );
 }
