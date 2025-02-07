@@ -12,29 +12,27 @@ import { BackgroundBeamsWithCollision } from "@/components/Background";
 
 import { Notification } from "./components/Notification";
 
-const placeholders = [
-  "Где вы черпаете вдохновение?",
-  "Какие у вас есть вопросы к Богу?",
-  "Любимое место писание?",
-  "Как вы пришли к Богу?",
-  "С какими сложностями вы сталкиваетесь??",
-];
+import { placeholders } from "./constants";
 
 export default function Home() {
   const [input, setInput] = useState("");
   const [status, setStatus] = useState<"ok" | "error" | "initial">("initial");
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
 
   const handleChange = ({
     target: { value },
   }: React.ChangeEvent<HTMLInputElement>) => setInput(value);
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     const resultStatus = await askRequest(input);
     setStatus(resultStatus);
 
-    setTimeout(() => setStatus("initial"), 3000);
+    if (timeoutId) clearTimeout(timeoutId);
+
+    const id = setTimeout(() => setStatus("initial"), 3000);
+    setTimeoutId(id);
   };
 
   return (
