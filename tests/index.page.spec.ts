@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("Should navigate to auth page", async ({ page }) => {
+test("Should navigate to auth page from index page", async ({ page }) => {
   // Arrange
   await page.goto("/");
 
