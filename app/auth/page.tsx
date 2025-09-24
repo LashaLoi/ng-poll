@@ -1,5 +1,62 @@
-import { LoginForm } from "./components/LoginForm";
+"use client";
 
-export default async function LoginPage() {
-  return <LoginForm />;
+import { GalleryVerticalEnd } from "lucide-react";
+
+import { cn } from "@/core/utils";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { sendPassword } from "./actions";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { useResettableActionState } from "@/core/hooks/use-resettable-action-state";
+import { useEffect } from "react";
+
+export default function LoginPage() {
+  const [state, formAction, isPending, reset] = useResettableActionState(
+    sendPassword,
+    null
+  );
+
+  useEffect(() => {
+    if (state !== "error") return;
+
+    setTimeout(() => reset(), 5000);
+  }, [state]);
+
+  return (
+    <div className={cn("flex flex-col gap-6")}>
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-col items-center gap-2">
+          <a href="#" className="flex flex-col items-center gap-2 font-medium">
+            <div className="flex size-8 items-center justify-center rounded-md">
+              <GalleryVerticalEnd className="size-6" />
+            </div>
+          </a>
+          <h1 className="text-xl font-bold">Вход в систему</h1>
+        </div>
+        <form className="flex flex-col gap-6" action={formAction}>
+          <div className="grid gap-3">
+            <Label htmlFor="password">Пароль</Label>
+            <Input
+              id="password"
+              type="password"
+              name="password"
+              placeholder="----------"
+              required
+            />
+          </div>
+          <Button type="submit" loading={isPending} disabled={isPending}>
+            Войти
+          </Button>
+          {state === "error" && (
+            <Alert variant="destructive">
+              <AlertTitle>Ошибка</AlertTitle>
+              <AlertDescription>Неверный пароль</AlertDescription>
+            </Alert>
+          )}
+        </form>
+      </div>
+    </div>
+  );
 }
