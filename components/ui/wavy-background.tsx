@@ -1,10 +1,12 @@
 "use client";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { cn } from "@/core/utils";
-import { useTheme } from "next-themes";
 import React, { useEffect, useRef, useState } from "react";
+
+import { useTheme } from "next-themes";
 import { createNoise3D } from "simplex-noise";
+
+import { cn } from "@/core/utils";
 
 export const WavyBackground = ({
   children,

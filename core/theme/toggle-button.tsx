@@ -2,12 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 
-import { Button } from "@/components/ui/button";
+import { Loader } from "lucide-react";
 
 import { useTheme } from "next-themes";
-import { icons, modes } from "./constants";
 
-import { Loader } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+import { icons, modes } from "./constants";
 
 export function ToggleButton() {
   const { setTheme, theme } = useTheme();

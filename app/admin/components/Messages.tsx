@@ -1,27 +1,29 @@
 "use client";
 
-import { useMessages } from "../hooks";
+import { FadeIn } from "@/components/ui/fade-in";
 
-import { FadeInStagger } from "@/components/ui/fade-in";
+import { useMessages } from "../hooks";
+import { Message } from "./message";
 
 import type { Message as MessageType } from "../types";
-
-import { Message } from "./Message";
+import { EmptyMessages } from "./empty-messages";
 
 type MessagesProps = {
   messages: MessageType[];
 };
 
-export function Messages({ messages: initialMessages }: MessagesProps) {
+export const Messages: React.FC<MessagesProps> = ({
+  messages: initialMessages,
+}) => {
   const messages = useMessages(initialMessages);
 
+  if (messages.length === 0) return <EmptyMessages />;
+
   return (
-    <FadeInStagger>
-      <div className="p-4 flex flex-col gap-5">
-        {messages.map((message) => (
-          <Message key={message.id} message={message} />
-        ))}
-      </div>
-    </FadeInStagger>
+    <FadeIn className="p-4 flex flex-col gap-5" once>
+      {messages.map((message) => (
+        <Message key={message.id} message={message} />
+      ))}
+    </FadeIn>
   );
-}
+};

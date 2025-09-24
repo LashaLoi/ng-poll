@@ -1,11 +1,12 @@
 import { useState } from "react";
+
 import { createClient } from "@/core/supabase/client";
 
+import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 
-import { Message as MessageType } from "../types";
-import { Alert } from "@/components/ui/alert";
+import type { Message as MessageType } from "../types";
 
 const supabase = createClient();
 

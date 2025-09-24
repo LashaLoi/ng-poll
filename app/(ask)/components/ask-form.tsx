@@ -1,11 +1,12 @@
 "use client";
 
+import { CheckCircle2Icon } from "lucide-react";
+
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
+import { FadeIn } from "@/components/ui/fade-in";
 import { Textarea } from "@/components/ui/textarea";
 
-import { FadeIn } from "@/components/ui/fade-in";
-import { CheckCircle2Icon } from "lucide-react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useAskForm } from "../hooks";
 
 export function AskForm() {

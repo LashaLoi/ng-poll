@@ -1,7 +1,8 @@
-import { AskForm } from "./components/ask-form";
-import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
 import { FadeIn } from "@/components/ui/fade-in";
+import { LayoutTextFlip } from "@/components/ui/layout-text-flip";
 import { WavyBackground } from "@/components/ui/wavy-background";
+
+import { AskForm } from "./components/ask-form";
 
 export default function AskPage() {
   return (

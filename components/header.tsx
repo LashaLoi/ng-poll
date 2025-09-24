@@ -1,11 +1,9 @@
 "use client";
 
-// import { useState } from "react";
-// import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-// import { cn } from "@/core/utils";
-
 import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
+
 import { ToggleButton } from "@/core/theme/toggle-button";
 
 export function Header() {
