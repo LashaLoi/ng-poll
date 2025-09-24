@@ -3,7 +3,7 @@
 import { FadeIn } from "@/components/ui/fade-in";
 
 import { useMessages } from "../hooks";
-import { Message } from "./question";
+import { Message } from "./message";
 
 import type { Message as MessageType } from "../types";
 import { EmptyMessages } from "./empty-messages";

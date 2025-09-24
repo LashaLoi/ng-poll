@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 
 import { createClient } from "@/core/supabase/server";
 
-import { Messages } from "./components/questions";
+import { Messages } from "./components/messages";
 
 import type { Message } from "./types";
 
