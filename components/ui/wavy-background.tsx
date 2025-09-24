@@ -82,7 +82,7 @@ export const WavyBackground = ({
       ctx.strokeStyle = waveColors[i % waveColors.length];
       for (x = 0; x < w; x += 5) {
         const y = noise(x / 800, 0.3 * i, nt) * 100;
-        ctx.lineTo(x, y + h * 0.5); // adjust for height, currently at 50% of the container
+        ctx.lineTo(x, y + h * 0.9); // adjust for height, currently at 50% of the container
       }
       ctx.stroke();
       ctx.closePath();
@@ -111,15 +111,15 @@ export const WavyBackground = ({
     setIsSafari(
       typeof window !== "undefined" &&
         navigator.userAgent.includes("Safari") &&
-        !navigator.userAgent.includes("Chrome"),
+        !navigator.userAgent.includes("Chrome")
     );
   }, []);
 
   return (
     <div
       className={cn(
-        "h-1/2 flex flex-col items-center justify-center",
-        containerClassName,
+        "flex flex-col items-center justify-center",
+        containerClassName
       )}
     >
       <canvas
@@ -129,7 +129,7 @@ export const WavyBackground = ({
         style={{
           ...(isSafari ? { filter: `blur(${blur}px)` } : {}),
         }}
-      ></canvas>
+      />
       <div className={cn("relative z-10", className)} {...props}>
         {children}
       </div>
