@@ -1,31 +1,17 @@
-"use client";
+import { redirect } from "next/navigation";
 
 import { GalleryVerticalEnd } from "lucide-react";
+import { LoginForm } from "./components/login-form";
+import { createClient } from "@/core/supabase/server";
 
-import { cn } from "@/core/utils";
+export default async function LoginPage() {
+  const supabase = await createClient();
+  const { data: authData } = await supabase.auth.getUser();
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { sendPassword } from "./actions";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { useResettableActionState } from "@/core/hooks/use-resettable-action-state";
-import { useEffect } from "react";
-
-export default function LoginPage() {
-  const [state, formAction, isPending, reset] = useResettableActionState(
-    sendPassword,
-    null
-  );
-
-  useEffect(() => {
-    if (state !== "error") return;
-
-    setTimeout(() => reset(), 5000);
-  }, [state]);
+  if (authData.user) redirect("/admin");
 
   return (
-    <div className={cn("flex flex-col gap-6")}>
+    <div className={"flex flex-col gap-6"}>
       <div className="flex flex-col gap-6">
         <div className="flex flex-col items-center gap-2">
           <a href="#" className="flex flex-col items-center gap-2 font-medium">
@@ -35,27 +21,7 @@ export default function LoginPage() {
           </a>
           <h1 className="text-xl font-bold">Вход в систему</h1>
         </div>
-        <form className="flex flex-col gap-6" action={formAction}>
-          <div className="grid gap-3">
-            <Label htmlFor="password">Пароль</Label>
-            <Input
-              id="password"
-              type="password"
-              name="password"
-              placeholder="----------"
-              required
-            />
-          </div>
-          <Button type="submit" loading={isPending} disabled={isPending}>
-            Войти
-          </Button>
-          {state === "error" && (
-            <Alert variant="destructive">
-              <AlertTitle>Ошибка</AlertTitle>
-              <AlertDescription>Неверный пароль</AlertDescription>
-            </Alert>
-          )}
-        </form>
+        <LoginForm />
       </div>
     </div>
   );
