@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Skinia Ministries",
-  description: "Skinia Ministries",
+  title: "NG POLL",
+  description: "NG POLL",
 };
 
 export default function RootLayout({

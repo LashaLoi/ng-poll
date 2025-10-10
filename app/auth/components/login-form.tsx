@@ -21,7 +21,7 @@ export const LoginForm = () => {
     if (state !== "error") return;
 
     setTimeout(() => reset(), 5000);
-  }, [state]);
+  }, [state, reset]);
 
   return (
     <form className="flex flex-col gap-6" action={formAction}>
