@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 import { ToggleButton } from "@/core/theme/toggle-button";
+import { ArrowRightToLine } from "lucide-react";
 
 export function Header() {
   // const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,8 +49,8 @@ export function Header() {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center space-x-4">
             <Link href="/auth">
-              <Button variant="ghost" size="sm">
-                Войти
+              <Button size="icon" data-testid="login-button">
+                <ArrowRightToLine />
               </Button>
             </Link>
             <ToggleButton />
@@ -59,7 +60,9 @@ export function Header() {
           <div className="md:hidden">
             <div className="flex justify-between items-center border-t border-border/40">
               <Link href="/auth">
-                <Button className="mr-2">Войти</Button>
+                <Button size="icon" className="mr-2" data-testid="login-button">
+                  <ArrowRightToLine />
+                </Button>
               </Link>
               <ToggleButton />
             </div>

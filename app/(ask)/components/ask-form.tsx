@@ -22,7 +22,9 @@ export function AskForm() {
           placeholder="Спроси меня о чем угодно..."
         />
         <div className="flex gap-2">
-          <Button loading={pending}>Задать вопрос</Button>
+          <Button loading={pending} type="submit">
+            Задать вопрос
+          </Button>
           <Button variant="secondary" type="reset">
             Очистить
           </Button>
@@ -38,7 +40,7 @@ export function AskForm() {
           </Alert>
         )}
         {state === "ok" && (
-          <Alert variant="success">
+          <Alert variant="success" data-testid="success-notification">
             <CheckCircle2Icon />
             <AlertTitle>Готово!</AlertTitle>
             <AlertDescription>Ваш вопрос успешно отправлен.</AlertDescription>
