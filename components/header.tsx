@@ -58,7 +58,7 @@ export function Header() {
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <div className="flex justify-between items-center border-t border-border/40">
+            <div className="flex justify-between items-center  border-border/40">
               <Link href="/auth">
                 <Button size="icon" className="mr-2" data-testid="login-button">
                   <ArrowRightToLine />

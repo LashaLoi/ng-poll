@@ -14,11 +14,11 @@ export function Message({ message }: { message: MessageType }) {
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const onDelete = async (id: number) => {
+  const onDelete = async () => {
     setIsDeleteLoading(true);
 
     try {
-      await supabase.from("question").delete().eq("id", id);
+      await supabase.from("question").delete().eq("id", message.id);
     } catch (error) {
       console.error(error);
 
@@ -37,10 +37,9 @@ export function Message({ message }: { message: MessageType }) {
           minute: "2-digit",
         })}
         <Button
-          variant="outline"
           loading={isDeleteLoading}
           disabled={isDeleteLoading}
-          onClick={() => onDelete(message.id)}
+          onClick={onDelete}
         >
           Удалить
         </Button>

@@ -16,16 +16,16 @@ export function AskForm() {
     <FadeIn variant="slow">
       <form className="w-full flex flex-col gap-4" action={formAction}>
         <Textarea
-          className="h-48"
+          className="h-70 bg-gray-100"
           name="question"
           required
           placeholder="Спроси меня о чем угодно..."
         />
-        <div className="flex gap-2">
-          <Button loading={pending} type="submit">
+        <div className="flex gap-2 justify-between">
+          <Button loading={pending} type="submit" className="flex-1">
             Задать вопрос
           </Button>
-          <Button variant="secondary" type="reset">
+          <Button variant="secondary" type="reset" className="flex-1">
             Очистить
           </Button>
         </div>
