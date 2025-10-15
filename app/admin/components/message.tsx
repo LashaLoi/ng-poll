@@ -8,7 +8,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 
 import type { Message as MessageType } from "../types";
 
-const supabase = createClient();
+const client = createClient();
 
 export function Message({ message }: { message: MessageType }) {
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
@@ -18,7 +18,7 @@ export function Message({ message }: { message: MessageType }) {
     setIsDeleteLoading(true);
 
     try {
-      await supabase.from("question").delete().eq("id", message.id);
+      await client.from("question").delete().eq("id", message.id);
     } catch (error) {
       console.error(error);
 

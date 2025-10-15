@@ -7,8 +7,8 @@ import { createClient } from "@/core/supabase/server";
 import { LoginForm } from "./components/login-form";
 
 export default async function LoginPage() {
-  const supabase = await createClient();
-  const { data: authData } = await supabase.auth.getUser();
+  const client = await createClient();
+  const { data: authData } = await client.auth.getUser();
 
   if (authData.user) redirect("/admin");
 

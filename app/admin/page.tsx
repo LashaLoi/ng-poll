@@ -7,11 +7,11 @@ import { Messages } from "./components/messages";
 import type { Message } from "./types";
 
 export default async function Admin() {
-  const supabase = await createClient();
-  const { data: authData } = await supabase.auth.getUser();
+  const client = await createClient();
+  const { data: authData } = await client.auth.getUser();
 
   if (!authData.user) redirect("/auth");
-  const { data: messages } = await supabase
+  const { data: messages } = await client
     .from("question")
     .select("*")
     .overrideTypes<Message[]>();
