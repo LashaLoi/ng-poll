@@ -16,7 +16,7 @@ export function AskForm() {
     <FadeIn variant="slow">
       <form className="w-full flex flex-col gap-4" action={formAction}>
         <Textarea
-          className="h-70 bg-gray-100"
+          className="h-50 bg-gray-100"
           name="question"
           required
           placeholder="Спроси меня о чем угодно..."

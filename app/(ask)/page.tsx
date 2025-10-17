@@ -6,9 +6,9 @@ import { AskForm } from "./components/ask-form";
 
 export default function AskPage() {
   return (
-    <WavyBackground className="w-full p-2">
-      <div className=" max-w-2xl mx-auto">
-        <FadeIn variant="scale" className="flex justify-center gap-2">
+    <WavyBackground className="w-full">
+      <div className=" max-w-2xl mx-auto ">
+        <FadeIn variant="scale" className="flex justify-center gap-2 p-2">
           <LayoutTextFlip
             text="Спроси меня "
             words={[
@@ -19,7 +19,7 @@ export default function AskPage() {
             ]}
           />
         </FadeIn>
-        <div className="mt-6">
+        <div className="mt-6 px-4">
           <AskForm />
         </div>
       </div>

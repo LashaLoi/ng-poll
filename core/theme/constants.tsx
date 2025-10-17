@@ -1,4 +1,4 @@
-import { Sun, Moon, Contrast } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
 
 type ListNode<T> = {
   value: T;
@@ -7,15 +7,12 @@ type ListNode<T> = {
 
 const light: ListNode<string> = { value: "light", next: null };
 const dark: ListNode<string> = { value: "dark", next: null };
-const system: ListNode<string> = { value: "system", next: null };
 
 light.next = dark;
-dark.next = system;
-system.next = light;
+dark.next = light;
 
-export const modes = { light, dark, system };
+export const modes = { light, dark };
 export const icons = {
   light: <Sun key="light" />,
   dark: <Moon key="dark" />,
-  system: <Contrast key="system" />,
 };
