@@ -32,7 +32,7 @@ export const useMessages = (initialMessages: Message[]) => {
     return () => {
       channels.unsubscribe();
     };
-  });
+  }, []);
 
   return messages;
 };

@@ -1,14 +1,11 @@
 import { useState } from "react";
 
-import { createClient } from "@/core/supabase/client";
-
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 
 import type { Message as MessageType } from "../types";
-
-const client = createClient();
+import { deleteMessageAction } from "./actions";
 
 export function Message({ message }: { message: MessageType }) {
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
@@ -18,7 +15,11 @@ export function Message({ message }: { message: MessageType }) {
     setIsDeleteLoading(true);
 
     try {
-      await client.from("question").delete().eq("id", message.id);
+      const result = await deleteMessageAction(message.id);
+      if (result !== "error") return;
+
+      setIsError(true);
+      return;
     } catch (error) {
       console.error(error);
 

@@ -4,7 +4,6 @@ import { Spinner } from "@/components/ui/spinner";
 export default function AdminLoading() {
   return (
     <div className="p-4 flex flex-col gap-5">
-      {/* Loading skeleton for messages */}
       {Array.from({ length: 3 }).map((_, index) => (
         <Card key={index} className="animate-pulse">
           <CardHeader>
@@ -20,8 +19,6 @@ export default function AdminLoading() {
           </CardContent>
         </Card>
       ))}
-
-      {/* Loading indicator */}
       <div className="flex justify-center items-center py-8">
         <div className="flex items-center gap-2 text-muted-foreground">
           <Spinner size="sm" />
