@@ -1,16 +1,12 @@
 import { redirect } from "next/navigation";
-
 import { GalleryVerticalEnd } from "lucide-react";
-
-import { createClient } from "@/core/supabase/server";
-
+import { getMe } from "@/core/api";
 import { LoginForm } from "./components/login-form";
 
 export default async function LoginPage() {
-  const client = await createClient();
-  const { data: authData } = await client.auth.getUser();
+  const user = await getMe();
 
-  if (authData.user) redirect("/admin");
+  if (user) redirect("/admin");
 
   return (
     <div className={"flex flex-col gap-6"}>

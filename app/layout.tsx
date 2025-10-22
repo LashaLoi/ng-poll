@@ -6,6 +6,7 @@ import { Header } from "@/components/header";
 import { ThemeProvider } from "@/core/theme/theme-provider";
 
 import "./globals.css";
+import { initializeClient } from "@/core/api";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,11 +23,13 @@ export const metadata: Metadata = {
   description: "NG POLL",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  await initializeClient();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <meta

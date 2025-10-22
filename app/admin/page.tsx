@@ -1,9 +1,9 @@
 import { Messages } from "./components/messages";
-import { getMessages, getUserAction } from "./actions";
+import { getMessagesAction, getMeAction } from "./actions";
 
 export default async function Admin() {
-  await getUserAction();
-  const messages = await getMessages();
+  await getMeAction();
+  const messages = await getMessagesAction();
 
   return <Messages messages={messages ?? []} />;
 }

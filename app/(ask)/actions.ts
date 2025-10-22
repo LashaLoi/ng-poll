@@ -1,18 +1,12 @@
 "use server";
 
-import { createClient } from "@/core/supabase/server";
+import { createMessage } from "@/core/api";
 
-export async function askAction(
-  _: "ok" | "error" | null,
-  formData: FormData
-): Promise<"ok" | "error"> {
-  const client = await createClient();
-  const { data } = await client
-    .from("question")
-    .insert({ text: formData.get("question") })
-    .select();
+export async function askAction(_: "ok" | "error" | null, formData: FormData) {
+  const text = formData.get("question")?.toString() ?? "";
+  const isOk = await createMessage(text);
 
-  if (!data) return "error";
+  if (!isOk) return "error";
 
   return "ok";
 }

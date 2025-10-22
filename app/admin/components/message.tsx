@@ -4,8 +4,8 @@ import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 
-import type { Message as MessageType } from "../types";
 import { deleteMessageAction } from "./actions";
+import type { Message as MessageType } from "@/core/api";
 
 export function Message({ message }: { message: MessageType }) {
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
@@ -15,7 +15,8 @@ export function Message({ message }: { message: MessageType }) {
     setIsDeleteLoading(true);
 
     try {
-      const result = await deleteMessageAction(message.id);
+      const result = await deleteMessageAction(message.id.toString());
+
       if (result !== "error") return;
 
       setIsError(true);

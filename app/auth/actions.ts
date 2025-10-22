@@ -1,17 +1,13 @@
 "use server";
 
 import { redirect } from "next/navigation";
-
-import { createClient } from "@/core/supabase/server";
+import { signIn } from "@/core/api";
 
 export async function sendPassword(_prevState: unknown, formData: FormData) {
-  const client = await createClient();
-  const { data } = await client.auth.signInWithPassword({
-    email: "test@email.com",
-    password: formData.get("password")?.toString() ?? "",
-  });
+  const password = formData.get("password")?.toString() ?? "";
+  const isOk = await signIn(password);
 
-  if (!data.user) return "error";
+  if (!isOk) return "error";
 
   redirect("/admin");
 }

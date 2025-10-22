@@ -176,15 +176,14 @@ const fadeInVariantsCVA = cva("", {
   },
 });
 
-export interface FadeInProps
-  extends Omit<HTMLMotionProps<"div">, "variants">,
-    VariantProps<typeof fadeInVariantsCVA> {
-  delay?: number;
-  duration?: number;
-  once?: boolean;
-  amount?: number;
-  children?: React.ReactNode;
-}
+export type FadeInProps = Omit<HTMLMotionProps<"div">, "variants"> &
+  VariantProps<typeof fadeInVariantsCVA> & {
+    delay?: number;
+    duration?: number;
+    once?: boolean;
+    amount?: number;
+    children?: React.ReactNode;
+  };
 
 const FadeIn = React.forwardRef<HTMLDivElement, FadeInProps>(
   (
@@ -207,7 +206,7 @@ const FadeIn = React.forwardRef<HTMLDivElement, FadeInProps>(
       fadeInVariantsChildMap[variant as keyof typeof fadeInVariantsChildMap];
 
     // Override duration if provided
-    const customVariants = React.useMemo(() => {
+    const customVariants = () => {
       if (!duration) return variants;
 
       return {
@@ -220,13 +219,13 @@ const FadeIn = React.forwardRef<HTMLDivElement, FadeInProps>(
           },
         },
       };
-    }, [variants, duration]);
+    };
 
     return (
       <motion.div
         ref={ref}
         className={cn(fadeInVariantsCVA({ variant }), className)}
-        variants={customVariants}
+        variants={customVariants()}
         initial="hidden"
         whileInView="visible"
         viewport={{ once, amount }}
@@ -245,15 +244,14 @@ const FadeIn = React.forwardRef<HTMLDivElement, FadeInProps>(
 FadeIn.displayName = "FadeIn";
 
 // Stagger container component for multiple children
-export interface FadeInStaggerProps
-  extends Omit<HTMLMotionProps<"div">, "variants"> {
+export type FadeInStaggerProps = Omit<HTMLMotionProps<"div">, "variants"> & {
   delay?: number;
   duration?: number;
   once?: boolean;
   amount?: number;
   staggerDelay?: number;
   children?: React.ReactNode;
-}
+};
 
 const FadeInStagger = React.forwardRef<HTMLDivElement, FadeInStaggerProps>(
   (

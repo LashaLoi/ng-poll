@@ -1,15 +1,9 @@
 "use server";
 
-import { createClient } from "@/core/supabase/server";
+import { deleteMessage } from "@/core/api";
 
-export const deleteMessageAction = async (id: number) => {
-  const client = await createClient();
+export const deleteMessageAction = async (id: string) => {
+  const isOk = await deleteMessage(id);
 
-  try {
-    await client.from("question").delete().eq("id", id);
-
-    return "ok";
-  } catch {
-    return "error";
-  }
+  return isOk ? "ok" : "error";
 };
