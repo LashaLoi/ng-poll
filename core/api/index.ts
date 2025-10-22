@@ -8,7 +8,7 @@ export type Message = {
   text: string;
 };
 
-export let client: SupabaseClient;
+let client: SupabaseClient;
 
 export const initializeClient = async () => {
   client = await createClient();
@@ -30,6 +30,12 @@ export const signIn = async (password: string) => {
   });
 
   return Boolean(data.user);
+};
+
+export const signOut = async () => {
+  const result = await client.auth.signOut();
+
+  return !result.error;
 };
 
 export const createMessage = async (text: string) => {
