@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { type Message, subscribeToMessages } from "@/core/api";
-import { createClient } from "@/core/supabase/client";
+import { createClient } from "@/core/api/supabase/client";
 
 export const useMessages = (initialMessages: Message[]) => {
   const [messages, setMessages] = useState(initialMessages);
