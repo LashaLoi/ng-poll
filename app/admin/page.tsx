@@ -1,5 +1,5 @@
-import { Messages } from "./components/messages";
 import { getMessagesAction, getMeAction } from "./actions";
+import { Messages } from "./components/messages";
 
 export default async function Admin() {
   await getMeAction();

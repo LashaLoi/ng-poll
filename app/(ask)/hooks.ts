@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { useResettableActionState } from "@/core/hooks/use-resettable-action-state";
+import { withDelay } from "@/core/utils";
 
 import { askAction } from "./actions";
 
@@ -14,18 +15,18 @@ export const useAskForm = () => {
   useEffect(() => {
     if (actionState === "ok") {
       setState("ok");
-      setTimeout(() => {
+      withDelay(5000, () => {
         setState(null);
         reset();
-      }, 5000);
+      });
     }
 
     if (actionState === "error") {
       setState("error");
-      setTimeout(() => {
+      withDelay(5000, () => {
         setState(null);
         reset();
-      }, 5000);
+      });
     }
   }, [actionState, reset]);
 

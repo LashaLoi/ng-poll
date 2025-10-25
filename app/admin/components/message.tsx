@@ -17,6 +17,8 @@ export function Message({ message }: { message: MessageType }) {
     try {
       const result = await deleteMessageAction(message.id.toString());
 
+      console.log({ result });
+
       if (result !== "error") return;
 
       setIsError(true);

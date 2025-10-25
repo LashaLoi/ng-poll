@@ -3,10 +3,11 @@ import { Analytics } from "@vercel/analytics/next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { Header } from "@/components/header";
+import { initializeClient } from "@/core/api";
 import { ThemeProvider } from "@/core/theme/theme-provider";
 
 import "./globals.css";
-import { initializeClient } from "@/core/api";
+import { HeaderLoginAction } from "@/components/header/components/login";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,7 +46,9 @@ export default async function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <Header />
+          <Header>
+            <HeaderLoginAction />
+          </Header>
           {children}
         </ThemeProvider>
         <Analytics />

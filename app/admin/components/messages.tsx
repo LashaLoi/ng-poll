@@ -3,10 +3,10 @@
 import { FadeIn } from "@/components/ui/fade-in";
 
 import { useMessages } from "../hooks";
+import { EmptyMessages } from "./empty-messages";
 import { Message } from "./message";
 
 import type { Message as MessageType } from "../types";
-import { EmptyMessages } from "./empty-messages";
 
 type MessagesProps = {
   messages: MessageType[];

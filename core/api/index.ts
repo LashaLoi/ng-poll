@@ -1,4 +1,4 @@
-import { createClient } from "@/core/api/supabase/server";
+import { createClient } from "@/core/db/supabase/server";
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 
